@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 public class Pessoa implements Serializable {

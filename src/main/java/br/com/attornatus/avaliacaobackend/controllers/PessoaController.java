@@ -43,4 +43,11 @@ public class PessoaController {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<PessoaDto> atualizarPessoa(@PathVariable Integer id,
+                                                     @RequestBody PessoaDto dto){
+        dto = service.atualizar(id, dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
 }

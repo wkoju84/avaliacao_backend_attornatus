@@ -42,4 +42,14 @@ public class PessoaService {
         entidade = repository.save(entidade);
         return new PessoaDto(entidade);
     }
+
+    @Transactional
+    public PessoaDto atualizar(Integer id, PessoaDto dto){
+        Pessoa entidade = repository.getReferenceById(id);
+        entidade.setNome(dto.getNome());
+        entidade.setDataNascimento(dto.getDataNascimento());
+        entidade.setEnderecoAtual(dto.isEnderecoAtual());
+        entidade = repository.save(entidade);
+        return new PessoaDto(entidade);
+    }
 }
