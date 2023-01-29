@@ -1,14 +1,14 @@
 package br.com.attornatus.avaliacaobackend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table
 public class Pessoa implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -19,6 +19,12 @@ public class Pessoa implements Serializable {
     private String nome;
     private String dataNascimento;
     private boolean enderecoAtual;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "pessoa_endereco",
+    joinColumns = @JoinColumn(name = "pessoa_id"),
+    inverseJoinColumns = @JoinColumn(name = "endereco_id"))
+    private Set<Endereco> enderecos = new HashSet<>();
 
     public Pessoa() {
     }

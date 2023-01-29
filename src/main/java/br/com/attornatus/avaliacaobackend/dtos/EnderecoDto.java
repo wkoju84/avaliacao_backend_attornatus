@@ -1,34 +1,38 @@
-package br.com.attornatus.avaliacaobackend.entities;
+package br.com.attornatus.avaliacaobackend.dtos;
 
-import jakarta.persistence.*;
+import br.com.attornatus.avaliacaobackend.entities.Endereco;
+import br.com.attornatus.avaliacaobackend.entities.Pessoa;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-@Entity
-@Table
-public class Endereco implements Serializable {
+public class EnderecoDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String logradouro;
     private String cep;
     private String numero;
     private String cidade;
 
-
-    public Endereco() {
+    public EnderecoDto() {
     }
 
-    public Endereco(Integer id, String logradouro, String cep, String numero, String cidade) {
+    public EnderecoDto(Integer id, String logradouro, String cep, String numero, String cidade) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
+    }
+
+    public EnderecoDto(Endereco endereco) {
+        this.id = endereco.getId();
+        this.logradouro = endereco.getLogradouro();
+        this.cep = endereco.getCep();
+        this.numero = endereco.getNumero();
+        this.cidade = endereco.getCidade();
     }
 
     public Integer getId() {
